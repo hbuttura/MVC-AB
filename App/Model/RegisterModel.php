@@ -1,4 +1,7 @@
 <?php
+namespace App\Model;
+
+use App\DAO\RegisterDAO;
 
 class RegisterModel
 {
@@ -7,8 +10,6 @@ class RegisterModel
 
     public function save()
     {
-        include "DAO/RegisterDAO.php";
-
         $dao = new RegisterDAO();
 
         if (empty($this->id))
@@ -18,7 +19,6 @@ class RegisterModel
     }
     public function getById(int $id)
     {
-        include "DAO/RegisterDAO.php";
         $dao = new RegisterDAO();
         $obj = $dao->selectById($id);
 

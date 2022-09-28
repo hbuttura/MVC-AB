@@ -1,16 +1,15 @@
 <?php
+namespace App\DAO;
 
-class RegisterDAO
+use App\Model\RegisterModel;
+
+class RegisterDAO extends DAO
 {
-    private $conexao;
+    public $conexao;
 
     public function __construct()
     {
-        $dsn = "mysql:host=localhost:3306;dbname=login";
-        $user = "root";
-        $pass = "9090";
-
-        $this->conexao = new PDO($dsn, $user, $pass);
+        parent::__construct();
     }
 
     function insert(RegisterModel $model)

@@ -1,20 +1,21 @@
 <?php
+namespace App\Controller;
 
-class RegisterController
+use App\Model\RegisterModel;
+
+class RegisterController extends Controller
 {
     public static function form()
     {
-        include "Model/RegisterModel.php";
 
         $model = new RegisterModel();
         
         if(isset($_GET['id']))
             $model = $model->getById((int) $_GET['id']);
-        include "View/Register/FormRegister.php";
+        include "./View/modules/Register/FormRegister.php";
     }
     public static function save()
     {
-        include "Model/RegisterModel.php";
 
         $register = new RegisterModel();
         $register->idusuario = $_POST['idusuario'];

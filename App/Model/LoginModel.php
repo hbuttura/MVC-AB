@@ -1,13 +1,16 @@
 <?php
+namespace App\Model;
 
-class LoginModel {
+use App\DAO\LoginDAO;
+
+class LoginModel
+{
     public $idusuario, $usuario, $senha;
     public $rows;
+    public $error = False;
 
     public function validationUserPassModel()
     {
-        include "DAO/LoginDAO.php";
-
         $dao = new LoginDAO();
         $dao->validationUserPass($this);
     }

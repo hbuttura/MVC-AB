@@ -1,9 +1,10 @@
 <?php
 
-$uri_parse = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+use App\Controller\{RegisterController,
+                    LoginController
+                    };
 
-include "Controller/RegisterController.php";
-include "Controller/LoginController.php";
+$uri_parse = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch($uri_parse)
 {

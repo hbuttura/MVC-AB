@@ -1,25 +1,31 @@
 <?php
+namespace App\DAO;
 
-class LoginDAO
+use App\Model\LoginModel;
+
+class LoginDAO extends DAO
 {
-    private $conexao;
+    public $conexao;
 
     public function __construct()
     {
-        $dsn = "mysql:host=localhost:3306;dbname=login";
-        $user = "root";
-        $pass = "9090";
-
-        $this->conexao = new PDO($dsn, $user, $pass);
+        parent::__construct();
     }
 
     function validationUserPass(LoginModel $model) {
-        $sql = "SELECT idusuario, usuario FROM usuario WHERE usuario = ? AND senha = md5('?')";
+        $sql = "SELECT usuario, senha FROM usuario WHERE usuario = ? AND senha = ?";
         $stmt = $this->conexao->prepare($sql);
+        
         $stmt->bindValue(1, $model->usuario);
         $stmt->bindValue(2, $model->senha);
 
         $stmt->execute();
 
+        if (empty($stmt->fetchObject())) {
+            $model->error == True;
+            return header("Location: /login");
+        } else {
+            $model->error == False;
+        }
     }
 }
